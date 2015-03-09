@@ -12,7 +12,7 @@ RSpec.describe SchedulingsController, :type => :controller do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all schedulings as @schedulings" do
+    xit "assigns all schedulings as @schedulings" do
       scheduling = Scheduling.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:schedulings)).to eq([scheduling])

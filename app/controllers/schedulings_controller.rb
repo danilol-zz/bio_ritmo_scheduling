@@ -1,28 +1,21 @@
 class SchedulingsController < ApplicationController
   before_action :set_scheduling, only: [:show, :edit, :update, :destroy]
 
-  # GET /schedulings
-  # GET /schedulings.json
   def index
-    @schedulings = Scheduling.all
+    @hours = [ "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00",
+               "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"]
   end
 
-  # GET /schedulings/1
-  # GET /schedulings/1.json
   def show
   end
 
-  # GET /schedulings/new
   def new
     @scheduling = Scheduling.new
   end
 
-  # GET /schedulings/1/edit
   def edit
   end
 
-  # POST /schedulings
-  # POST /schedulings.json
   def create
     @scheduling = Scheduling.new(scheduling_params)
 
@@ -37,8 +30,6 @@ class SchedulingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /schedulings/1
-  # PATCH/PUT /schedulings/1.json
   def update
     respond_to do |format|
       if @scheduling.update(scheduling_params)
@@ -51,8 +42,6 @@ class SchedulingsController < ApplicationController
     end
   end
 
-  # DELETE /schedulings/1
-  # DELETE /schedulings/1.json
   def destroy
     @scheduling.destroy
     respond_to do |format|
@@ -62,13 +51,11 @@ class SchedulingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_scheduling
-      @scheduling = Scheduling.find(params[:id])
-    end
+  def set_scheduling
+    @scheduling = Scheduling.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def scheduling_params
-      params.require(:scheduling).permit(:room_id, :user_id, :time)
-    end
+  def scheduling_params
+    params.require(:scheduling).permit(:room_id, :user_id, :time)
+  end
 end
