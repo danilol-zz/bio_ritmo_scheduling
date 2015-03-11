@@ -7,3 +7,36 @@
 
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
+
+<br>
+<br>
+<br>
+<table>
+  <thead>
+      <td>
+        <tr>Horário</tr>
+          <tr><%= days_of_week[0] %></tr>
+          <tr><%= days_of_week[1] %></tr>
+          <tr><%= days_of_week[2] %></tr>
+          <tr><%= days_of_week[3] %></tr>
+          <tr><%= days_of_week[4] %></tr>
+          <tr><%= days_of_week[5] %></tr>
+          <tr><%= days_of_week[6] %></tr>
+      </td>
+    </thead>
+
+    <tbody>
+      <% Constants::HOURS.each do |hour| %>
+      <tr>
+        <td><%= hour %></td>
+        <td><%= check_situation(@room, days_of_week[0].to_datetime, hour.to_i) %></td>
+        <td><%= check_situation(@room, days_of_week[1].to_datetime, hour.to_i) %></td>
+        <td><%= check_situation(@room, days_of_week[2].to_datetime, hour.to_i) %></td>
+        <td><%= check_situation(@room, days_of_week[3].to_datetime, hour.to_i) %></td>
+        <td><%= check_situation(@room, days_of_week[4].to_datetime, hour.to_i) %></td>
+        <td><%= check_situation(@room, days_of_week[5].to_datetime, hour.to_i) %></td>
+        <td><%= check_situation(@room, days_of_week[6].to_datetime, hour.to_i) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+</table>

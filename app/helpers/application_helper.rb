@@ -1,7 +1,7 @@
 module ApplicationHelper
-  def check_situation(date, hour)
+  def check_situation(room, date, hour)
     scheduling_date = DateTime.new(date.year, date.month, date.day, hour)
-    scheduling      = Scheduling.find_by(time: scheduling_date)
+    scheduling      = Scheduling.find_by(room_id: room.id, time: scheduling_date)
     scheduling ? "Reservado para outro" : "Disponível"
   end
 

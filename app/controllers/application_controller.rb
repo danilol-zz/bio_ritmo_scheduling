@@ -1,11 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :ensure_authentication
+  before_filter :get_rooms
 
   def ensure_authentication
     unless current_user
       redirect_to login_path, notice: "Faça o login para entrar no sistema, por favor."
     end
+  end
+
+  def get_rooms
+    @rooms = Room.order(:description)
   end
 
   def current_user

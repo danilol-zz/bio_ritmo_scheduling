@@ -4,8 +4,9 @@ gem 'rails', '4.1.7'
 gem 'mysql2', '~> 0.3.15'
 gem 'jquery-rails'
 
-gem 'less-rails', '2.5.0'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'sass-rails', '>= 3.2'
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'
