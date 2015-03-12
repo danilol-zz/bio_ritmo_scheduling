@@ -29,7 +29,10 @@
                 <% @rooms.each do |room| %>
                   <li><%= link_to room.description, room_path(room) %></li>
                 <% end %>
+                <li class="divider"></li>
                 <li><%= link_to "Nova sala de reunião", new_room_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Ver todas", rooms_path %></li>
               </ul>
             </li>
             <% if @current_user and @current_user.admin? %>

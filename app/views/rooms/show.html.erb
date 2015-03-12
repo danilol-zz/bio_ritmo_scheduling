@@ -1,32 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Nome da Sala:</strong>
   <%= @room.description %>
 </p>
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<br>
+<br>
+<p>Agenda da sala</p>
+<table class="table table-striped">
+  <tr>
+    <td>Horário</td>
+    <td><%= days_of_week[0] %></td>
+    <td><%= days_of_week[1] %></td>
+    <td><%= days_of_week[2] %></td>
+    <td><%= days_of_week[3] %></td>
+    <td><%= days_of_week[4] %></td>
+    <td><%= days_of_week[5] %></td>
+    <td><%= days_of_week[6] %></td>
+  </tr>
 
-<br>
-<br>
-<br>
-<table>
-  <thead>
-      <td>
-        <tr>Horário</tr>
-          <tr><%= days_of_week[0] %></tr>
-          <tr><%= days_of_week[1] %></tr>
-          <tr><%= days_of_week[2] %></tr>
-          <tr><%= days_of_week[3] %></tr>
-          <tr><%= days_of_week[4] %></tr>
-          <tr><%= days_of_week[5] %></tr>
-          <tr><%= days_of_week[6] %></tr>
-      </td>
-    </thead>
-
-    <tbody>
-      <% Constants::HOURS.each do |hour| %>
+  <tbody>
+    <% Constants::HOURS.each do |hour| %>
       <tr>
         <td><%= hour %></td>
         <td><%= check_situation(@room, days_of_week[0].to_datetime, hour.to_i) %></td>
@@ -38,5 +33,5 @@
         <td><%= check_situation(@room, days_of_week[6].to_datetime, hour.to_i) %></td>
       </tr>
     <% end %>
-    </tbody>
+  </tbody>
 </table>
