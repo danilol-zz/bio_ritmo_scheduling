@@ -4,34 +4,35 @@
   <strong>Nome da Sala:</strong>
   <%= @room.description %>
 </p>
+<div id="time_div">
+  <%= link_to 'teste', @room, method: 'put', remote: true %>
+</div>
 
 <br>
 <br>
 <p>Agenda da sala</p>
 <table class="table table-striped">
   <tr>
-    <td>Horário</td>
-    <td><%= days_of_week[0] %></td>
-    <td><%= days_of_week[1] %></td>
-    <td><%= days_of_week[2] %></td>
-    <td><%= days_of_week[3] %></td>
-    <td><%= days_of_week[4] %></td>
-    <td><%= days_of_week[5] %></td>
-    <td><%= days_of_week[6] %></td>
+    <th>Horário</td>
+    <th><%= days_of_week[0] %></th>
+    <th><%= days_of_week[1] %></th>
+    <th><%= days_of_week[2] %></th>
+    <th><%= days_of_week[3] %></th>
+    <th><%= days_of_week[4] %></th>
+    <th><%= days_of_week[5] %></th>
+    <th><%= days_of_week[6] %></th>
   </tr>
 
-  <tbody>
     <% Constants::HOURS.each do |hour| %>
       <tr>
-        <td><%= hour %></td>
-        <td><%= check_situation(@room, days_of_week[0].to_datetime, hour.to_i) %></td>
-        <td><%= check_situation(@room, days_of_week[1].to_datetime, hour.to_i) %></td>
-        <td><%= check_situation(@room, days_of_week[2].to_datetime, hour.to_i) %></td>
-        <td><%= check_situation(@room, days_of_week[3].to_datetime, hour.to_i) %></td>
-        <td><%= check_situation(@room, days_of_week[4].to_datetime, hour.to_i) %></td>
-        <td><%= check_situation(@room, days_of_week[5].to_datetime, hour.to_i) %></td>
-        <td><%= check_situation(@room, days_of_week[6].to_datetime, hour.to_i) %></td>
+        <td class="col-md-1"><%= hour %></td>
+        <td class="col-md-1"><%= check_situation(@room, days_of_week[0], hour) %></td>
+        <td class="col-md-1"><%= check_situation(@room, days_of_week[1], hour) %></td>
+        <td class="col-md-1"><%= check_situation(@room, days_of_week[2], hour) %></td>
+        <td class="col-md-1"><%= check_situation(@room, days_of_week[3], hour) %></td>
+        <td class="col-md-1"><%= check_situation(@room, days_of_week[4], hour) %></td>
+        <td class="col-md-1"><%= check_situation(@room, days_of_week[5], hour) %></td>
+        <td class="col-md-1"><%= check_situation(@room, days_of_week[6], hour) %></td>
       </tr>
     <% end %>
-  </tbody>
 </table>

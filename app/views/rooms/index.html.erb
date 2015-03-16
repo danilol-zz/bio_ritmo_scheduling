@@ -13,7 +13,7 @@
       <% @rooms.each do |room| %>
         <tr>
           <td><%= room.description %></td>
-          <td><%= link_to 'Visualizar', room %></td>
+          <td><%= link_to 'Agenda', room %></td>
           <td><%= link_to 'Editar', edit_room_path(room) %></td>
           <td><%= link_to 'Remover', room, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
         </tr>
