@@ -4,9 +4,6 @@
   <strong>Nome da Sala:</strong>
   <%= @room.description %>
 </p>
-<div id="time_div">
-  <%= link_to 'teste', @room, method: 'put', remote: true %>
-</div>
 
 <br>
 <br>
@@ -26,13 +23,13 @@
     <% Constants::HOURS.each do |hour| %>
       <tr>
         <td class="col-md-1"><%= hour %></td>
-        <td class="col-md-1"><%= check_situation(@room, days_of_week[0], hour) %></td>
-        <td class="col-md-1"><%= check_situation(@room, days_of_week[1], hour) %></td>
-        <td class="col-md-1"><%= check_situation(@room, days_of_week[2], hour) %></td>
-        <td class="col-md-1"><%= check_situation(@room, days_of_week[3], hour) %></td>
-        <td class="col-md-1"><%= check_situation(@room, days_of_week[4], hour) %></td>
-        <td class="col-md-1"><%= check_situation(@room, days_of_week[5], hour) %></td>
-        <td class="col-md-1"><%= check_situation(@room, days_of_week[6], hour) %></td>
+        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[0], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
+        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[1], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
+        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[2], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
+        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[3], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
+        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[4], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
+        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[5], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
+        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[6], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
       </tr>
     <% end %>
 </table>

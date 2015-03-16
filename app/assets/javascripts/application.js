@@ -17,3 +17,11 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require bootstrap
+//
+//
+
+$( document ).ready(function(){
+  $( "a" ).click(function() {
+    alert( "You clicked a link!" )
+  }
+};

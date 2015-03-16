@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post "/password_update" => "users#password_update"
   get  "/remember_password/:id" => "users#remember_password_index", :as => "remember"
   post "/remember_password"     => "users#remember_password"
+
+  get "/schedule_room" => 'schedulings#schedule_room', as: 'schedule_room'
 end

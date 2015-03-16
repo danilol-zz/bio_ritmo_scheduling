@@ -1,6 +1,20 @@
 class SchedulingsController < ApplicationController
   before_action :set_scheduling, only: [:update, :destroy]
 
+  def create
+    @scheduling = Scheduling.new(scheduling_params)
+
+    respond_to do |format|
+      if @scheduling.save
+        format.html { redirect_to @scheduling, notice: 'Scheduling was successfully created.' }
+        format.json { render :show, status: :created, location: @scheduling }
+      else
+        format.html { render :new }
+        format.json { render json: @scheduling.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def update
     respond_to do |format|
       if @scheduling.update(scheduling_params)

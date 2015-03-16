@@ -11,6 +11,39 @@ RSpec.describe SchedulingsController, :type => :controller do
 
   let(:valid_session) { {} }
 
+  describe "POST create" do
+    describe "with valid params" do
+      it "creates a new Scheduling" do
+        expect {
+          post :create, {:scheduling => valid_attributes}, valid_session
+        }.to change(Scheduling, :count).by(1)
+      end
+
+      it "assigns a newly created scheduling as @scheduling" do
+        post :create, {:scheduling => valid_attributes}, valid_session
+        expect(assigns(:scheduling)).to be_a(Scheduling)
+        expect(assigns(:scheduling)).to be_persisted
+      end
+
+      it "redirects to the created scheduling" do
+        post :create, {:scheduling => valid_attributes}, valid_session
+        expect(response).to redirect_to(Scheduling.last)
+      end
+    end
+
+    describe "with invalid params" do
+      it "assigns a newly created but unsaved scheduling as @scheduling" do
+        post :create, {:scheduling => invalid_attributes}, valid_session
+        expect(assigns(:scheduling)).to be_a_new(Scheduling)
+      end
+
+      it "re-renders the 'new' template" do
+        post :create, {:scheduling => invalid_attributes}, valid_session
+        expect(response).to render_template("new")
+      end
+    end
+  end
+
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) { FactoryGirl.attributes_for(:scheduling, room_id: 99, user_id: 88) }
