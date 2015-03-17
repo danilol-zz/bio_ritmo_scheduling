@@ -20,8 +20,10 @@
 //
 //
 
-$( document ).ready(function(){
-  $( "a" ).click(function() {
-    alert( "You clicked a link!" )
-  }
-};
+overlay = $('<div class="box box-loading"><div class="overlay"></div><img src="http://www.schultzlawoffice.com/img/loading/loading-x.gif" align="center" /></div>');
+$(document).on('ajaxStart', function(){
+  $(document.body).prepend(overlay);
+});
+$(document).on('ajaxStop', function(){
+  $(overlay).remove();
+});

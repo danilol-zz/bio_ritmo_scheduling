@@ -35,6 +35,18 @@ class SchedulingsController < ApplicationController
     end
   end
 
+  def schedule_room
+    date = params[:date].to_date
+    scheduling_date = DateTime.new(date.year, date.month, date.day, params[:time].to_i)
+    @scheduling = Scheduling.find_by(room_id: params[:room_id], time: scheduling_date)
+
+    if @scheduling.try(:user_id) == current_user.id
+      @scheduling.destroy
+    elsif @scheduling.blank?
+      @scheduling = current_user.schedulings.create(room_id: params[:room_id], time: scheduling_date)
+    end
+  end
+
   private
   def set_scheduling
     @scheduling = Scheduling.find(params[:id])

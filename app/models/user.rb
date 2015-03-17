@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :schedulings
   before_create :encrypt_password
 
   validates :email,    :presence =>true, :uniqueness=>true

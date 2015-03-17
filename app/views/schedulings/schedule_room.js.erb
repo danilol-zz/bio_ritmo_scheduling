@@ -1,0 +1,13 @@
+<% if @scheduling.user_id == @current_user.id %>
+  <%
+  hour   = l(@scheduling.time, format: :hour)
+  day    = l(@scheduling.time, format: :date)
+  text   = @scheduling.persisted? ? "Reservado para #{@scheduling.user.name}" : 'Disponível'
+  action = @scheduling.persisted? ? 'cancelar' : 'reservar'
+  %>
+  $('table tr[data-hour="<%= hour %>"]').find('td[data-day="<%= day %>"]').
+    html('<%= j link_to(text, schedule_room_path(room_id: @scheduling.room_id, date: day, time: hour),
+                        data: {confirm: "tem certeza que deseja #{action}?"}, remote: true) %>');
+<% else %>
+  alert('Reservado para outro usuário')
+<% end %>

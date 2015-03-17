@@ -20,16 +20,22 @@
     <th><%= days_of_week[6] %></th>
   </tr>
 
-    <% Constants::HOURS.each do |hour| %>
-      <tr>
-        <td class="col-md-1"><%= hour %></td>
-        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[0], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
-        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[1], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
-        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[2], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
-        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[3], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
-        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[4], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
-        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[5], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
-        <td class="col-md-1"><%= link_to check_situation(@room, days_of_week[6], hour), schedule_room_path(@room.id, hour, @current_user.id), :remote => true %></td>
-      </tr>
-    <% end %>
+  <% Constants::HOURS.each do |hour| %>
+    <tr data-hour="<%= hour %>">
+      <td class="col-md-1"><%= hour %></td>
+      <% days_of_week.each do |day| %>
+        <% scheduling   = check_scheduling(@room, day, hour) %>
+
+        <% if can_schedule?(scheduling) %>
+          <td class="col-md-1" data-day="<%= day %>">
+            <%= link_to scheduling_description(scheduling),
+                        schedule_room_path(room_id: @room.id, date: day, time: hour),
+                        data: {confirm: 'tem certeza que deseja reservar/cancelar?'}, remote: true %>
+          </td>
+        <% else %>
+          <td class="col-md-1"><%= scheduling_description(scheduling) %></td>
+        <% end %>
+      <% end %>
+    </tr>
+  <% end %>
 </table>

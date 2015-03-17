@@ -1,0 +1,78 @@
+pt:
+  date:
+    order:
+      - "day"
+      - "month"
+      - "year"
+  will_paginate:
+    previous_label: Anterior
+    next_label: Próxima
+    page_gap: ...
+  helpers:
+    submit:
+      create: Criar %{model}
+      update: Atualizar %{model}
+  activerecord:
+    models:
+      user:
+        one: Usuário
+        other: Usuarios
+      room:
+        one: Sala
+        other: Salas
+      scheduling:
+        one: Agendamento
+        other: Agendamentos
+    attributes:
+      user:
+        email: E-mail
+        name: Nome
+        password: Senha
+        password_confirmation: Confirmação de senha
+        role: Tipo
+      room:
+        description: Descrição
+    errors:
+      messages:
+        record_invalid: Registro inválido
+      models:
+        room:
+          attributes:
+            description:
+              blank: não pode ser vazio!
+        scheduling:
+          attributes:
+            room_id:
+              blank: não pode ser vazio!
+            user_id:
+              blank: não pode ser vazio!
+            time:
+              blank: não pode ser vazio!
+        user:
+          attributes:
+            password:
+              too_short: muito curta!
+              too_long: muito grande!
+              blank: não pode ser vazio!
+            password_confirmation:
+              confirmation: deve ser preenchido!
+            email:
+              blank: não pode ser vazio!
+              invalid: valor inválido!
+              taken: já cadastrado!
+            name:
+              blank: não pode ser vazio!
+              taken: já cadastrado!
+  are_you_sure: Você tem certeza?
+  show: Visualizar
+  edit: Editar
+  destroy: Remover
+  back: Voltar
+  signin: Entrar
+  new_user: Novo usuário?
+  forgot_password: Esqueceu a senha?
+  reset_password: Redefinir senha
+  time:
+    formats:
+      hour: ! '%H:%M'
+      date: ! '%d/%m/%Y'

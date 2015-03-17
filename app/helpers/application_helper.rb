@@ -1,9 +1,19 @@
 module ApplicationHelper
-  def check_situation(room, date_param, hour)
+  def check_scheduling(room, date_param, hour)
     date = date_param.to_date
     scheduling_date = DateTime.new(date.year, date.month, date.day, hour.to_i)
-    scheduling      = Scheduling.find_by(room_id: room.id, time: scheduling_date)
-    scheduling      ? "Reservado para #{scheduling.user.name}" : "Disponível"
+    Scheduling.find_by(room_id: room.id, time: scheduling_date)
+  end
+
+  def scheduling_description(scheduling)
+    scheduling ? "Reservado para #{scheduling.user.name}" : "Disponível"
+  end
+
+
+  def can_schedule?(scheduling)
+    return true unless scheduling
+    return true if scheduling.user == @current_user
+    false
   end
 
   def days_of_week(date_param = nil)
