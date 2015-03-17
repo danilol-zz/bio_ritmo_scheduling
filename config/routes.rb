@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   resources :rooms
 
-  resources :schedulings
-
   root 'welcome#index'
 
   resources :users

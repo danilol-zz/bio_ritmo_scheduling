@@ -14,4 +14,59 @@ RSpec.describe ApplicationHelper, :type => :helper do
       end
     end
   end
+
+  describe 'scheduling_description' do
+    subject { scheduling_description(scheduling) }
+
+    context 'with scheduling' do
+      let(:scheduling) { FactoryGirl.create(:scheduling, room_id: 1, user_id: user.id, time: Date.today)  }
+      let(:user)       { FactoryGirl.create(:user, name: "Yoda") }
+
+      it "returns the proper message" do
+        expect(subject).to eq "Reservado para Yoda"
+      end
+    end
+
+    context 'without scheduling' do
+      let(:scheduling) { nil }
+      it "returns the proper message" do
+        expect(subject).to eq "Disponível"
+      end
+    end
+  end
+
+  describe 'can_schedule?' do
+    subject { can_schedule?(scheduling) }
+
+    context 'without scheduling' do
+      let(:scheduling) { nil }
+
+      it "returns the proper message" do
+        expect(subject).to be_truthy
+      end
+    end
+
+    context 'with scheduling' do
+      before { @current_user = current_user }
+
+      context 'with scheduling user is current_user' do
+        let(:scheduling)   { FactoryGirl.create(:scheduling, room_id: 1, user_id: current_user.id, time: Date.today)  }
+        let(:current_user) { FactoryGirl.create(:user, name: "Yoda") }
+
+        it "returns the proper message" do
+          expect(subject).to be_truthy
+        end
+      end
+
+      context 'with scheduling user is different user' do
+        let(:scheduling)   { FactoryGirl.create(:scheduling, room_id: 1, user_id: user.id, time: Date.today)  }
+        let(:current_user) { FactoryGirl.create(:user, name: "Yoda",      email: "yoda@force.com", id: 1) }
+        let(:user)         { FactoryGirl.create(:user, name: "Palpatine", email: "palp@force.com", id: 2) }
+
+        it "returns the proper message" do
+          expect(subject).to be_falsy
+        end
+      end
+    end
+  end
 end

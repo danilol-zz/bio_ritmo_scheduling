@@ -9,7 +9,6 @@ module ApplicationHelper
     scheduling ? "Reservado para #{scheduling.user.name}" : "Disponível"
   end
 
-
   def can_schedule?(scheduling)
     return true unless scheduling
     return true if scheduling.user == @current_user

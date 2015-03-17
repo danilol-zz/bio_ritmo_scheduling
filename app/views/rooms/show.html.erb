@@ -24,7 +24,7 @@
     <tr data-hour="<%= hour %>">
       <td class="col-md-1"><%= hour %></td>
       <% days_of_week.each do |day| %>
-        <% scheduling   = check_scheduling(@room, day, hour) %>
+        <% scheduling = check_scheduling(@room, day, hour) %>
 
         <% if can_schedule?(scheduling) %>
           <td class="col-md-1" data-day="<%= day %>">

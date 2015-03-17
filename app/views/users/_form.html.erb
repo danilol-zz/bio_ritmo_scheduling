@@ -1,25 +1,27 @@
 <%= form_for(@user, html: {class: "nav-form"}) do |f| %>
-  <div class="field t6">
-    <%= f.label :name %><br>
-    <%= f.text_field :name  %>
-  </div>
-  <div class="field t6">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field t7">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field t7">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+  <div class="form">
+    <div class="field t6">
+      <%= f.label :name %><br>
+      <%= f.text_field :name  %>
+    </div>
+    <div class="field t6">
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field t7">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <div class="field t7">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
 
-  <%= f.hidden_field :role, value: "user" %>
+    <%= f.hidden_field :role, value: "user" %>
 
-  <div class="field">
-    <%= f.submit "Salvar" %>
-    <%= link_to t('back'), users_path %>
+    <div class="field">
+      <%= f.submit "Salvar" %>
+      <%= link_to t('back'), users_path %>
+    </div>
   </div>
 <% end %>

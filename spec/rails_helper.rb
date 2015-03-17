@@ -15,4 +15,6 @@ RSpec.configure do |config|
   config.include ApplicationHelper
 
   config.infer_spec_type_from_file_location!
+
+  config.render_views = true
 end
